@@ -1,7 +1,7 @@
 let express = require('express')
 let app = express()
-// let flash = require('express-flash')
-// const session = require('express-session')
+let flash = require('express-flash')
+const session = require('express-session')
 
 
 // app.use(flash())
@@ -22,8 +22,16 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get("/", function(req, res){
+
   res.render("home");
 });
+
+app.post("/insertReg", function(req, res){
+  
+  res.render("home");
+});
+
+
 
 let PORT = process.env.PORT || 3009;
 

@@ -1,4 +1,4 @@
-function Registration(reg) {
+module.exports = function() {
 
 
 var regNumber = reg || {} ;
@@ -8,10 +8,11 @@ var regNo = '' ;
 function regNum(regN) {
 
 
-  if (regNumber[regN] === undefined  &&
-  regNumber[regN].startsWith('CY')||
-  regNumber[regN].startsWith('CK')||
-  regNumber[regN].startsWith('CJ')) {
+  if (regNumber[regN] === undefined  && 
+    regNumber[regN].startsWith('CY')||
+    regNumber[regN].startsWith('CK')||
+    regNumber[regN].startsWith('CJ')) 
+    {
 
 regNumber[regN] =0;
     return true;
@@ -47,6 +48,7 @@ regNumber[regN] =0;
 return{
   regNum,
   getMap,
+  getRegNo,
   filter
 }
 }

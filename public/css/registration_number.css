@@ -1,0 +1,27 @@
+body{
+  padding-top: 10%;
+  background-repeat: no-repeat;
+ 
+}
+
+.container{ 
+  padding-right: 10%;
+  border : 1px solid rgb(207, 187, 9) ;
+  background-image: url('')
+}
+
+.Input{
+  width: 50%;
+  border: 1px lightblue solid; 
+}
+
+/* .Output{
+  background : rgb(207, 187, 9) ;
+  border:rgb(194, 194, 224) 3px solid ;
+} */
+
+/* .AddBTN{
+  padding-left: 50%;
+} */
+
+
