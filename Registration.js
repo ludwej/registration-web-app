@@ -1,54 +1,56 @@
-module.exports = function() {
+module.exports = function(pool) {
 
 
-var regNumber = reg || {} ;
-var regNo = '' ;
+
+  async function registrations(regN) {
+        if (regNumber[regN] === undefined &&
+          regNumber[regN].startsWith('CY') ||
+          regNumber[regN].startsWith('CK') ||
+          regNumber[regN].startsWith('CJ')) {
+          let registrationNo = await pool.query('SELECT * FROM registration WHERE registration = $1 ', [regN])
+
+          if (registrationNo.rowCount === 0) {
+            await pool.query('INSERT into users (user_name, count) values($1, $2)', [name, 0])
+          }
+        }
+          await pool.query('update users set count=count+1 where user_name=$1', [name])
+      }
+
+          function allTowns() {
+            let allTown = await pool.query('select * from towns')
+            return allTown.rowCount
+          }
+
+          
+          function selectCapeTown(selectedTown){
+            if(selectedTown === CJ){
+              result = await pool.query('select id from towns where town_id=$1',['CA']);
+               let id = result.rows[0].id
+            }
+          }
+
+          function selectGeorge(selectedTown){
+            if(selectedTown === CA){
+              result = await pool.query('select id from towns where town_id=$1',['CAW']);
+               let id = result.rows[0].id
+            }
+          }
+
+          function selectPaarl(selectedTown){
+            if(selectedTown === CJ){
+              result = await pool.query('select id from towns where town_id=$1',['CJ']);
+               let id = result.rows[0].id
+            }
+          }
 
 
-function regNum(regN) {
 
 
-  if (regNumber[regN] === undefined  && 
-    regNumber[regN].startsWith('CY')||
-    regNumber[regN].startsWith('CK')||
-    regNumber[regN].startsWith('CJ')) 
-    {
-
-regNumber[regN] =0;
-    return true;
-  }
-  return false;
-}
-
-
-  function getRegNo() {
-    return regNo ;
-  }
-
-  function getMap() {
-    regNumber;
-  }
-
-  function filter(value) {
-    var startsW=[];
-    var keys = Object.keys(regNumber);
-
-    if (value != '') {
-      for (var i = 0; i < keys.length; i++) {
-        if (keys[i].startsWith(value)) {
-
-          startsW.push(keys[i]);
-  }
-}
- return startsW;
-}
-}
-
-
-return{
-  regNum,
-  getMap,
-  getRegNo,
-  filter
-}
-}
+          return {
+            registrations,
+            allTowns,
+            selectCapeTown,
+            selectGeorge,
+            selectPaarl
+          }
+        }
