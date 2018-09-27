@@ -1,44 +1,48 @@
 module.exports = function(pool) {
-
-
-
   async function registrations(regN) {
         if (regNumber[regN] === undefined &&
-          regNumber[regN].startsWith('CY') ||
-          regNumber[regN].startsWith('CK') ||
-          regNumber[regN].startsWith('CJ')) {
-          let registrationNo = await pool.query('SELECT * FROM registration WHERE registration = $1 ', [regN])
-
+          regNumber[regN].startsWith('CA') ||
+          regNumber[regN].startsWith('CL') ||
+          regNumber[regN].startsWith('CJ') ||
+          regNumber[regN].startsWith('CAW')) {
+          let registrationNo = await pool.query('SELECT * FROM towns WHERE towns = $1 ', [regN])
           if (registrationNo.rowCount === 0) {
-            await pool.query('INSERT into users (user_name, count) values($1, $2)', [name, 0])
+            await pool.query('INSERT into users (towns) values($1, $2)', [regN, 0])
           }
         }
-          await pool.query('update users set count=count+1 where user_name=$1', [name])
+          await pool.query('update users  where towns=$1', [regN])
       }
 
-          function allTowns() {
+         async function allTowns() {
             let allTown = await pool.query('select * from towns')
             return allTown.rowCount
           }
 
           
-          function selectCapeTown(selectedTown){
-            if(selectedTown === CJ){
-              result = await pool.query('select id from towns where town_id=$1',['CA']);
+        async  function selectCapeTown(selectedTown){
+            if(selectedTown === CA){
+              let result = await pool.query('select id from towns where town_id=$1',['CA']);
                let id = result.rows[0].id
             }
           }
 
-          function selectGeorge(selectedTown){
-            if(selectedTown === CA){
+         async function selectGeorge(selectedTown){
+            if(selectedTown === CAW){
               result = await pool.query('select id from towns where town_id=$1',['CAW']);
                let id = result.rows[0].id
             }
           }
 
-          function selectPaarl(selectedTown){
+        async  function selectPaarl(selectedTown){
             if(selectedTown === CJ){
               result = await pool.query('select id from towns where town_id=$1',['CJ']);
+               let id = result.rows[0].id
+            }
+          }
+
+         async function selectStellenbosch(selectedTown){
+            if(selectedTown === CL){
+              result = await pool.query('select id from  where town_id=$1',['CL']);
                let id = result.rows[0].id
             }
           }
@@ -51,6 +55,7 @@ module.exports = function(pool) {
             allTowns,
             selectCapeTown,
             selectGeorge,
-            selectPaarl
+            selectPaarl,
+            selectStellenbosch
           }
         }

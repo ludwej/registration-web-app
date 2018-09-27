@@ -2,6 +2,9 @@ let express = require('express')
 let app = express()
 let flash = require('express-flash')
 const session = require('express-session')
+let registrationFunction = require('./Registration')
+let regF = registrationFunction()
+
 
 const pg = require('pg')
 const Pool = pg.Pool
@@ -37,7 +40,8 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
-app.get("/", function(req, res){
+app.get("/", async function(req, res){
+   
 
   res.render("home");
 });
