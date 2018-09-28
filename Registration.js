@@ -1,5 +1,5 @@
 module.exports = function(pool) {
-  async function registrations(regN) {
+  async function registrations(regN, regCode) {
         if (regNumber[regN] === undefined &&
           regNumber[regN].startsWith('CA') ||
           regNumber[regN].startsWith('CL') ||
@@ -10,7 +10,6 @@ module.exports = function(pool) {
             await pool.query('INSERT into users (towns) values($1, $2)', [regN, 0])
           }
         }
-          await pool.query('update users  where towns=$1', [regN])
       }
 
          async function allTowns() {

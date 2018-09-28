@@ -17,4 +17,3 @@ insert into towns (town,initial) values ('George', 'CAW');
 insert into towns (town,initial) values ('Paarl', 'CJ');
 insert into towns (town,initial) values ('Stellenbosch', 'CL');
 
-

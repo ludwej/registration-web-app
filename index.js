@@ -40,7 +40,27 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+app.use(session({
+  secret: '<add a secret string here>',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(flash())
+
+
+
+
 app.get("/", async function(req, res){
+  const registration = req.body.Input
+  const towns = req.body.
+
+  
+
+  res.render("home");
+});
+
+app.get("/towns", async function(req, res){
    
 
   res.render("home");
@@ -49,6 +69,12 @@ app.get("/", async function(req, res){
 app.post("/insertReg", function(req, res){
   
   res.render("home");
+});
+
+
+app.get('/reset', async function (req, res) {
+      await pool.query('delete  from  towns');
+  res.redirect('/');
 });
 
 

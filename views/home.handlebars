@@ -1,43 +1,76 @@
 <div class="container">
 
-<h2>Registrations</h2>
- 
-
-<label>Registration</label>
+  <h2>Registrations</h2>
 
 
+  <label>Registration</label>
 
-<form action="/insertReg" method="POST">
 
-<input class="Input" type="text" name="Input " value=''placeholder="Registration Number" maxlength="100">
+
+  <form action="/insertReg" method="POST">
+
+    <input class="Input" type="text" name="Input " value='' placeholder="Registration Number" maxlength="100">
+    <br>
+    <br>
+    <button type="button " name="AddBTN" class="AddBTN ">Add</button>
+
+
+  </form>
 <br>
 <br>
-<button type="button " name="AddBTN" class="AddBTN ">Add</button>
 
 
-</form>
+  <form action="/towns">
+    <div class='row'>
+      <label class="radio inline">
+        <input type="radio" name="Town" class="Town" value="CA">
+        <span class="label-body">Cape Town</span>
+      </label>
+      <label class="radio inline">
+        <input type="radio" name="Town" class="Town" value="CJ">
+        <span class="label-body">Paarl</span>
+      </label>
+      <label class="radio inline">
+        <input type="radio" name="Town" class="Town" value="CAW">
+        <span class="label-body">George</span>
+      </label>
+      <label class="radio inline">
+        <input type="radio" name="Town" class="Town" value="CL">
+        <span class="label-body">Stellenbosch</span>
+      </label>
+    </div>
+
+    <br>
+    <br>
+
+
+    <button class="button-primary Show" type="submit" name="button">SHOW</button>
+  </form>
+
+  <br>
+  <br>
+
+  <form action="/reset">
+    <button class="button-primary Show" type="submit" name="button">Clear</button>
+  </form>
 
 
 
 
 
-<br>
+
+  <br>
 
 
-<label >Town:</label>
-<select name="Town" id='drop'>
-  <option value="CA">Cape Town</option>
-  <option value="CJ">Paarl</option>
-  <option value="CAW">George</option>
-  <option value="CL">Stellenbosch</option>
-</select>
 
-<div class="Output">
 
-<ul>
-  {{message}}
-</ul>
 
-</div>
+  <div class="Output">
+
+    <ul>
+      {{message}}
+    </ul>
+
+  </div>
 
 </div>

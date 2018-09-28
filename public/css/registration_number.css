@@ -5,15 +5,27 @@ body{
 }
 
 .container{ 
-  padding-right: 10%;
+  
   border : 1px solid rgb(207, 187, 9) ;
-  background-image: url('')
+  background-image: url('');
+  width: 50%;
+  height: 50%;
 }
 
 .Input{
   width: 50%; 
   border: 1px lightblue solid; 
 }
+
+
+.inline{
+  display: inline;
+  text-align: center;
+  padding-right: 10%;
+  padding-left: 20px;
+  align-content: center;
+}
+
 
 /* .Output{
   background : rgb(207, 187, 9) ;
