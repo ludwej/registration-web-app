@@ -8,7 +8,7 @@ create table towns(
 create table registrationNumbers(
 	id serial not null primary key,
     town_id int,
-	registrationNo int,
+	registrationNo text,
 	foreign key (town_id) references towns(id)
 );
 

@@ -3,7 +3,7 @@ let app = express()
 let flash = require('express-flash')
 const session = require('express-session')
 let registrationFunction = require('./Registration')
-let regF = registrationFunction()
+
 
 
 const pg = require('pg')
@@ -22,6 +22,7 @@ const pool = new Pool({
   ssl: useSSL
 })
 
+let regF = registrationFunction(pool)
 
 // app.use(flash())
 
@@ -50,15 +51,19 @@ app.use(flash())
 
 
 
+app.get("/", async function(req, res, next){
+ try {
+   let register = await regF.Towns();
+  console.log(register)
 
-app.get("/", async function(req, res){
-  const registration = req.body.Input
-  const towns = req.body.
-
-  
-
-  res.render("home");
+  res.render("home" ,{register});
+}
+ catch(error){
+   next(error)
+ }
 });
+
+
 
 app.get("/towns", async function(req, res){
    
@@ -66,10 +71,16 @@ app.get("/towns", async function(req, res){
   res.render("home");
 });
 
-app.post("/insertReg", function(req, res){
+app.post("/insertReg" , async function(req, res){
+  try{
+     await regF.regNum(req.body.Input)
+    console.log(insertRegistration)
   
-  res.render("home");
+  res.redirect("/")
+}
+  catch(err){}
 });
+
 
 
 app.get('/reset', async function (req, res) {
