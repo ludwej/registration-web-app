@@ -9,9 +9,9 @@
 
   <form action="/insertReg" method="POST">
 
-    <input class="Input" type="text" name="Input " value='' placeholder="Registration Number" maxlength="100">
-    <br>
-    <br>
+    <input class="Input" type="text" name="Input" value='' placeholder="Registration Number" maxlength="100">
+    
+    
     <button type="button " name="AddBTN" class="AddBTN ">Add</button>
 
 
@@ -56,18 +56,9 @@
 
 
 
-
-
-
-  <br>
-
-
-
-
-
   <div class="Output">
         {{#each register}} 
-    <h5> {{register}}</h5> 
+    <h5> {{registrationno}}</h5> 
     {{/each}}
 
   </div>

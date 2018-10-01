@@ -54,7 +54,7 @@ app.use(flash())
 app.get("/", async function(req, res, next){
  try {
    let register = await regF.Towns();
-  console.log(register)
+  //  console.log(register)
 
   res.render("home" ,{register});
 }
@@ -74,7 +74,7 @@ app.get("/towns", async function(req, res){
 app.post("/insertReg" , async function(req, res){
   try{
      await regF.regNum(req.body.Input)
-    console.log(insertRegistration)
+  
   
   res.redirect("/")
 }
@@ -84,7 +84,7 @@ app.post("/insertReg" , async function(req, res){
 
 
 app.get('/reset', async function (req, res) {
-      await pool.query('delete  from  towns');
+      await pool.query('delete  from  registrationNumbers');
   res.redirect('/');
 });
 
