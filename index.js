@@ -53,8 +53,11 @@ app.use(flash())
 
 app.get("/", async function(req, res, next){
  try {
+
+
    let register = await regF.Towns();
-  //  console.log(register)
+  
+
 
   res.render("home" ,{register});
 }
@@ -63,23 +66,39 @@ app.get("/", async function(req, res, next){
  }
 });
 
-
-
-app.get("/towns", async function(req, res){
-   
-
-  res.render("home");
-});
-
 app.post("/insertReg" , async function(req, res){
   try{
-     await regF.regNum(req.body.Input)
-  
-  
+    const name = req.body.Input 
+     await regF.regNum(name)
+
+     
+    
   res.redirect("/")
 }
   catch(err){}
+}); 
+
+app.get("/towns", async function(req, res){
+  const town = req.body.Town
+
+    let George = await regF.selectGeorge(town);
+    let CapeTown = await regF.selectCapeTown(town);
+    let Paarl = await regF.selectPaarl(town);
+    let Stellenbosch = await regF.selectStellenbosch(town);
+    console.log(Stellenbosch)
+    let allTowns = await regF.Towns(town)
+    
+
+  res.render("home", {
+    George,
+    CapeTown,
+    Paarl,
+    Stellenbosch,
+    allTowns
+  });
 });
+
+
 
 
 
