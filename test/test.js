@@ -14,17 +14,53 @@ const pool = new Pool({
 let reg = Registration(pool)
 
 
+
+
+beforeEach(async function () {
+  // clean the tables before each test run
+  await pool.query('delete from registrationNumbers;')
+})
+
+
 describe('Registrations', async function () {
-  it('should RETURN registration starts with CA for Cape Town', function () {
-    var factoryF = reg({
-      "CA 3737": 0,
-      "CY 3737": 0,
-      "CA 309897": 0
-    });
-    var filtered = factoryF.selectCapeTown("CA")
+  it('should RETURN registration starts with CA for Cape Town', async function () {
+  
+    let reg = Registration(pool)
+   await reg.regNum('ca 1223, ca 12223', 'ca')
+  //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-    assert.deepEqual(filtered, ['CA 3737', 'CA 309897'])
+   returnCpt = await reg.selectCapeTown('ca')
 
+   assert.deepEqual(returnCpt,  [ { registrationno: "ca 1223, ca 12223" } ]); 
+  });
+
+  beforeEach(async function () {
+    // clean the tables before each test run
+    await pool.query('delete from registrationNumbers;')
+  })
+
+
+  it('should RETURN registration starts with CJ for Paarl', async function () {
+  
+    let reg = Registration(pool)
+   await reg.regNum('cj 1223, cj 12223', 'cj')
+  //  await reg.regNum('ca 1254, ca 2468', 'ca')
+
+   returnPaarl = await reg.selectPaarl('cj')
+
+   assert.deepEqual(returnPaarl,  [ { registrationno: "cj 1223, cj 12223" } ]); 
+  });
+  
+
+  it('should RETURN registration starts with CAW for George', async function () {
+  
+    let reg = Registration(pool)
+   await reg.regNum('caw 1223, caw 12223', 'caw')
+  //  await reg.regNum('ca 1254, ca 2468', 'ca')
+
+  returnGeorge = await reg.selectPaarl('caw')
+
+   assert.deepEqual(returnGeorge,[{registrationno:"caw 1223, caw 12223"}]); 
   });
 
   // it('should RETURN registration starts with CK for Stellenbosch ', function () {

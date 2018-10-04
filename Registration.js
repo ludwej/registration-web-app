@@ -19,13 +19,13 @@ module.exports = function (pool) {
     return getTown.rows;
   }
 
-  async function selectCapeTown(town) {
-    if (town === CA) {
+  async function selectCapeTown() {
+  
       let result = await pool.query('select id from towns where initial=$1', ['ca']);
       let id = result.rows[0].id
       const capeTown = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
       return capeTown.rows;
-    }
+  
   }
 
   async function selectGeorge() {

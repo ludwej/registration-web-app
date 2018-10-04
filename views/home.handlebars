@@ -12,26 +12,36 @@
 
 
   </form>
+
+    {{#if messages.info}}
+    <div class="entry">
+      {{messages.info}}
+    </div>
+    {{/if}}
 <br>
 <br>
 
 
   <form action="/towns">
     <div class='row'>
+       <label class="radio inline">
+        <input type="radio" name="Town" class="Town" value="all">
+        <span class="label-body">All</span>
+      </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="CA">
+        <input type="radio" name="Town" class="Town" value="ca">
         <span class="label-body">Cape Town</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="CJ">
+        <input type="radio" name="Town" class="Town" value="cj">
         <span class="label-body">Paarl</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="CAW">
+        <input type="radio" name="Town" class="Town" value="caw">
         <span class="label-body">George</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="CL">
+        <input type="radio" name="Town" class="Town" value="cl">
         <span class="label-body">Stellenbosch</span>
       </label>
     </div>

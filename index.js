@@ -51,51 +51,68 @@ app.use(flash())
 
 
 
-app.get("/", async function(req, res, next){
- try {
+app.get("/", async function (req, res, next) {
+  try {
 
 
-   let register = await regF.Towns();
-  
+    let register = await regF.Towns();
 
 
-  res.render("home" ,{register});
-}
- catch(error){
-   next(error)
- }
+
+    res.render("home", {
+      register
+    });
+  } catch (error) {
+    next(error)
+  }
 });
 
-app.post("/insertReg" , async function(req, res){
+app.post("/insertReg", async function (req, res, next) {
+  try {
+    const name = req.body.Input
+    await regF.regNum(name)
+
+
+
+    res.redirect("/")
+  } catch (err) {
+    next(error)
+  }
+});
+
+app.get("/towns", async function (req, res, next) {
   try{
-    const name = req.body.Input 
-     await regF.regNum(name)
+    const town = req.body.Town
 
-     
-    
-  res.redirect("/")
-}
-  catch(err){}
-}); 
+    if(town === 'all'){
+      registrationno = await regF.Towns();
+      console.log(registrationno)
+     res.render('home', {registrationno})
+    }
 
-app.get("/towns", async function(req, res){
-  const town = req.body.Town
+    // if(town === 'cj'){
+    //   registrationno = await regF.selectPaarl(town);
+    //   res.render('home', {registrationno})
+    //  }
+  
 
-    let George = await regF.selectGeorge(town);
-    let CapeTown = await regF.selectCapeTown(town);
-    let Paarl = await regF.selectPaarl(town);
-    let Stellenbosch = await regF.selectStellenbosch(town);
-    console.log(Stellenbosch)
-    let allTowns = await regF.Towns(town)
-    
+    // let CapeTown = await regF.selectCapeTown(town);
+    // let Paarl = await regF.selectPaarl(town);
+    // let Stellenbosch = await regF.selectStellenbosch(town);
+    // let allTowns = await regF.Towns(town)
 
-  res.render("home", {
-    George,
-    CapeTown,
-    Paarl,
-    Stellenbosch,
-    allTowns
-  });
+
+    // res.render("home", {
+    //   George,
+    //   CapeTown,
+    //   Paarl,
+    //   Stellenbosch,
+    //   allTowns
+    // });
+  }
+  catch(error){
+    next(error)
+  }
 });
 
 
@@ -103,7 +120,7 @@ app.get("/towns", async function(req, res){
 
 
 app.get('/reset', async function (req, res) {
-      await pool.query('delete  from  registrationNumbers');
+  await pool.query('delete  from  registrationNumbers');
   res.redirect('/');
 });
 
@@ -111,6 +128,6 @@ app.get('/reset', async function (req, res) {
 
 let PORT = process.env.PORT || 3009;
 
-app.listen(PORT, function(){
+app.listen(PORT, function () {
   console.log('App starting on port', PORT);
 });
