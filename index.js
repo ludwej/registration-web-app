@@ -96,6 +96,9 @@ app.post("/towns", async function (req, res, next) {
 
     let register = await regF.filter(reg)
 
+      if(reg === 'all'){
+        await regF.Towns()
+      }
     res.render("home", {
       register
     });

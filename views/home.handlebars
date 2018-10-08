@@ -5,7 +5,8 @@
 
   <form action="/insertReg" method="POST">
 
-    <input class="Input" type="text" name="Input" placeholder="Add registration number" maxlength="100">
+    <input class="Input" type="text" name="Input" placeholder="Add registration number" pattern='[a-z]{2,3}\s\d{3}\W\d{3}|[a-z]{2,3}\s\d{2,3}'>
+     
 
 
     <button type="button " name="AddBTN" class="AddBTN ">Add</button>
@@ -28,7 +29,7 @@
   <form action="/towns" method="post">
     <div class='row'>
       <select name="Town">
-        <option name="Town" value="all">ALL</option>
+        <option name="all" value="ca">ALL</option>
         <option name="Town" value="ca">Cape Town</option>
         <option name="Town" value="cj">Paarl</option>
         <option name="Town" value="caw ">George</option>
