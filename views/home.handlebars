@@ -5,47 +5,37 @@
 
   <form action="/insertReg" method="POST">
 
-    <input class="Input" type="text" name="Input"  placeholder="Add registration number" maxlength="100">
-    
-    
+    <input class="Input" type="text" name="Input" placeholder="Add registration number" maxlength="100">
+
+
     <button type="button " name="AddBTN" class="AddBTN ">Add</button>
 
 
   </form>
 
-    {{#if messages.info}}
-    <div class="entry">
-      {{messages.info}}
-    </div>
-    {{/if}}
-<br>
-<br>
+  {{#if messages.info}}
+  <div class="entry">
+    {{messages.info}}
+  </div>
+  {{/if}}
+  <br>
+  <br>
+
+
+
 
 
   <form action="/towns" method="post">
     <div class='row'>
-       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="all">
-        <span class="label-body">All</span>
-      </label>
-      <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="ca">
-        <span class="label-body">Cape Town</span>
-      </label>
-      <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="cj" >
-        <span class="label-body">Paarl</span>
-      </label>
-      <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="caw" >
-        <span class="label-body">George</span>
-      </label>
-      <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="cl">
-        <span class="label-body">Stellenbosch</span>
-      </label>
-    </div>
+      <select name="Town">
+        <option name="Town" value="all">ALL</option>
+        <option name="Town" value="ca">Cape Town</option>
+        <option name="Town" value="cj">Paarl</option>
+        <option name="Town" value="caw ">George</option>
+        <option name="Town" value="cl">Stellenbosch</option>
+      </select>
 
+    </div>
     <br>
     <br>
 
@@ -61,12 +51,10 @@
   </form>
 
 
-<br>
-  
-        {{#each register}} 
-        <div class="Output">
-    <h5> {{registrationno}}</h5> 
-    </div>  
-    {{/each}}
+  <br> {{#each register}}
+  <div class="Output">
+    <h5> {{registrationno}}</h5>
+  </div>
+  {{/each}}
 
 </div>

@@ -53,12 +53,7 @@ app.use(flash())
 
 app.get("/", async function (req, res, next) {
   try {
-
-
     let register = await regF.Towns();
-
-
-
     res.render("home", {
       register
     });
@@ -73,12 +68,12 @@ app.get("/towns", async function (req, res, next) {
 
     let reg = req.body.Town;
 
-    let regi = await regF.filter(reg)
+    let register = await regF.filter(reg)
     console.log(regi);
     
 
     res.redirect("/towns", {
-      regi
+      register
     });
   } catch (error) {
     next(error)
@@ -99,10 +94,10 @@ app.post("/towns", async function (req, res, next) {
   try {
     let reg = req.body.Town
 
-    let regi = await regF.filter(reg)
+    let register = await regF.filter(reg)
 
     res.render("home", {
-      regi
+      register
     });
   } catch (error) {
     next(error)
