@@ -67,43 +67,47 @@ app.get("/", async function (req, res, next) {
   }
 });
 
-app.post("/insertReg", async function (req, res, next) {
-  
-    const name = req.body.Input
-    await regF.regNum(name)
+app.get("/towns", async function (req, res, next) {
+  try {
 
-    
-    // console.log(regi);
+
+    let reg = req.body.Town;
+
+    let regi = await regF.filter(reg)
+    console.log(regi);
     
 
-    res.redirect("/")
-  
+    res.redirect("/towns", {
+      regi
+    });
+  } catch (error) {
+    next(error)
+  }
 });
 
-app.get("/towns", async function (req, res, next) {
-  try{
-    const town = req.body.Town
+app.post("/insertReg", async function (req, res, next) {
 
-     
-    let regi = await regF.filter(town)
-    
-    // let George = await regF.selectGeorge(town);
-    // let CapeTown = await regF.selectCapeTown(town);
-    // let Paarl = await regF.selectPaarl(town);
-    // let Stellenbosch = await regF.selectStellenbosch(town);
-    // let allTowns = await regF.Towns(town)
+  const name = req.body.Input
+  await regF.regNum(name)
 
+
+  res.redirect("/")
+
+});
+
+app.post("/towns", async function (req, res, next) {
+  try {
+    let reg = req.body.Town
+
+    let regi = await regF.filter(reg)
 
     res.render("home", {
       regi
     });
+  } catch (error) {
+    next(error)
   }
-  catch(error){}
 });
-
-
-
-
 
 app.get('/reset', async function (req, res) {
   await pool.query('delete  from  registrationNumbers');
