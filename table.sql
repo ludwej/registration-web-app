@@ -12,8 +12,8 @@ create table registrationNumbers(
 	foreign key (town_id) references towns(id)
 );
 
-insert into towns (town, initial) values ('Cape Town', 'ca');
-insert into towns (town,initial) values ('George', 'caw');
-insert into towns (town,initial) values ('Paarl', 'cj');
-insert into towns (town,initial) values ('Stellenbosch', 'cl');
+insert into towns (town, initial) values ('Cape Town', 'CA');
+insert into towns (town,initial) values ('George', 'CAW');
+insert into towns (town,initial) values ('Paarl', 'CJ');
+insert into towns (town,initial) values ('Stellenbosch', 'CL');
 
