@@ -1,5 +1,6 @@
 
 
 function filterBy(value) {
-    console.log('town:', value);
+    await regF.filter(await regF.filter(value))
 }
+console.log();
