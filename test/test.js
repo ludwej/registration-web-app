@@ -29,7 +29,7 @@ describe('Registrations', async function () {
    await reg.regNum('ca 1223, ca 12223', 'ca')
   //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-   returnCpt = await reg.selectCapeTown('ca')
+   returnCpt = await reg.filter('ca')
 
    assert.deepEqual(returnCpt,  [ { registrationno: "ca 1223, ca 12223" } ]); 
   });
@@ -43,37 +43,32 @@ describe('Registrations', async function () {
   it('should RETURN registration starts with CJ for Paarl', async function () {
   
     let reg = Registration(pool)
-   await reg.regNum('cj 1223, cj 12223', 'cj')
+    await reg.regNum('cj 1223, cj 12223', 'cj')
   //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-   returnPaarl = await reg.selectPaarl('cj')
+   returnPaarl = await reg.filter('cj')
 
    assert.deepEqual(returnPaarl,  [ { registrationno: "cj 1223, cj 12223" } ]); 
   });
   
+  beforeEach(async function () {
+    // clean the tables before each test run
+    await pool.query('delete from registrationNumbers;')
+  })
 
-  it('should RETURN registration starts with CAW for George', async function () {
+  
+
+  it('should RETURN registration starts with caw for George', async function () {
   
     let reg = Registration(pool)
-   await reg.regNum('caw 1223, caw 12223', 'caw')
-  //  await reg.regNum('ca 1254, ca 2468', 'ca')
+   await reg.regNum('caw 246, caw 123','caw')
+  
 
-  returnGeorge = await reg.selectPaarl('caw')
+   returnGeorge = await reg.filter('caw')
 
-   assert.deepEqual(returnGeorge,[{registrationno:"caw 1223, caw 12223"}]); 
+   assert.deepEqual(returnGeorge,[{registrationno: "caw 246, caw 123"} ]); 
   });
-
-  // it('should RETURN registration starts with CK for Stellenbosch ', function () {
-  //   var factoryF = Registration({
-  //     "CA 3737": 0,
-  //     "CK 3737": 0,
-  //     "CA 309897": 0
-  //   });
-  //   var filtered = factoryF.filter("CK")
-
-  //   assert.deepEqual(filtered, ['CK 3737'])
-
-  // });
+  
 
   // it('should RETURN registration starts with CY for George', function () {
   //   var factoryF = Registration({

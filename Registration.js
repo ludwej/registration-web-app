@@ -2,7 +2,7 @@ module.exports = function (pool) {
 
 
   async function regNum(regN) {
-
+    // let registration= regN.
     let registration = regN.substr(0, 3).trim();
     let registrationNo = await pool.query('SELECT * FROM registrationNumbers WHERE registrationNo = $1 ', [registration])
     if (registrationNo.rowCount === 0) {
@@ -19,48 +19,54 @@ module.exports = function (pool) {
     return getTown.rows;
   }
 
-  async function selectCapeTown() {
-  
-      let result = await pool.query('select id from towns where initial=$1', ['ca']);
-      let id = result.rows[0].id
-      const capeTown = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
-      return capeTown.rows;
-  
-  }
-
-  async function selectGeorge() {
-    let result = await pool.query('select id from towns where initial=$1', ['caw']);
-    let id = result.rows[0].id
-    const George = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
-
-    return George.rows;
+  async function filter(regN) {
+    let registration = regN.substr(0, 3).trim();
+    let filterReg = await pool.query('SELECT id FROM towns WHERE initial = $1 ', [registration])
+    // console.log(filterReg.rows[0].id);
+    let filtering = await pool.query('select registrationNo from registrationNumbers where town_id = $1 ', [filterReg.rows[0].id])
+    console.log(filtering.rows);
+    return filtering.rows
+    // let result = await pool.query('select id from towns where initial=$1', ['ca']);
+    // let id = result.rows[0].id
+    // const capeTown = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
+    // return capeTown.rows;
 
   }
 
-  async function selectPaarl() {
-    let result = await pool.query('select id from towns where initial=$1', ['cj']);
-    let id = result.rows[0].id
-    const George = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
+  // async function selectGeorge() {
+  //   let result = await pool.query('select id from towns where initial=$1', ['caw']);
+  //   let id = result.rows[0].id
+  //   const George = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
 
-    return George.rows;
+  //   return George.rows;
 
-  }
+  // }
 
-  async function selectStellenbosch() {
-    let result = await pool.query('select id from towns where initial=$1', ['cl']);
-    let id = result.rows[0].id
-    const Stellenbosch = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
+  // async function selectPaarl() {
+  //   let result = await pool.query('select id from towns where initial=$1', ['cj']);
+  //   let id = result.rows[0].id
+  //   const George = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
 
-    return Stellenbosch.rows;
-  }
+  //   return George.rows;
+
+  // }
+
+  // async function selectStellenbosch() {
+  //   let result = await pool.query('select id from towns where initial=$1', ['cl']);
+  //   let id = result.rows[0].id
+  //   const Stellenbosch = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
+
+  //   return Stellenbosch.rows;
+  // }
 
 
   return {
     Towns,
     regNum,
-    selectCapeTown,
-    selectGeorge,
-    selectPaarl,
-    selectStellenbosch
+    filter
+    // selectCapeTown,
+    // selectGeorge,
+    // selectPaarl,
+    // selectStellenbosch
   }
 }

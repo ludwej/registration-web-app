@@ -25,23 +25,23 @@
   <form action="/towns">
     <div class='row'>
        <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="all">
+        <input type="radio" name="Town" class="Town" value="all" onclick="filterBy(this.value)">
         <span class="label-body">All</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="ca">
+        <input type="radio" name="Town" class="Town" value="ca" onclick="filterBy(this.value)">
         <span class="label-body">Cape Town</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="cj">
+        <input type="radio" name="Town" class="Town" value="cj" onclick="filterBy(this.value)">
         <span class="label-body">Paarl</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="caw">
+        <input type="radio" name="Town" class="Town" value="caw" onclick="filterBy(this.value)">
         <span class="label-body">George</span>
       </label>
       <label class="radio inline">
-        <input type="radio" name="Town" class="Town" value="cl">
+        <input type="radio" name="Town" class="Town" value="cl" onclick="filterBy(this.value)">
         <span class="label-body">Stellenbosch</span>
       </label>
     </div>
@@ -50,7 +50,7 @@
     <br>
 
 
-    <button class="button-primary Show" type="submit" name="button">SHOW</button>
+    {{!-- <button class="button-primary Show" type="submit" name="button" onchange="filter(Town)">SHOW</button> --}}
   </form>
 
   <br>

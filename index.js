@@ -68,51 +68,37 @@ app.get("/", async function (req, res, next) {
 });
 
 app.post("/insertReg", async function (req, res, next) {
-  try {
+  
     const name = req.body.Input
     await regF.regNum(name)
 
-
+    
+    // console.log(regi);
+    
 
     res.redirect("/")
-  } catch (err) {
-    next(error)
-  }
+  
 });
 
 app.get("/towns", async function (req, res, next) {
   try{
     const town = req.body.Town
 
-    if(town === 'all'){
-      registrationno = await regF.Towns();
-      console.log(registrationno)
-     res.render('home', {registrationno})
-    }
-
-    // if(town === 'cj'){
-    //   registrationno = await regF.selectPaarl(town);
-    //   res.render('home', {registrationno})
-    //  }
-  
-
+     
+    let regi = await regF.filter(town)
+    
+    // let George = await regF.selectGeorge(town);
     // let CapeTown = await regF.selectCapeTown(town);
     // let Paarl = await regF.selectPaarl(town);
     // let Stellenbosch = await regF.selectStellenbosch(town);
     // let allTowns = await regF.Towns(town)
 
 
-    // res.render("home", {
-    //   George,
-    //   CapeTown,
-    //   Paarl,
-    //   Stellenbosch,
-    //   allTowns
-    // });
+    res.render("home", {
+      regi
+    });
   }
-  catch(error){
-    next(error)
-  }
+  catch(error){}
 });
 
 
