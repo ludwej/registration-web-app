@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2>Registrations</h2>
+  <h1>Registrations</h1>
 
 
   <form action="/insertReg" method="POST">
@@ -14,9 +14,9 @@
 
   </form>
 
-  {{#if messages.info}}
+  {{#if messages.invalid}}
   <div class="entry">
-    {{messages.info}}
+    {{messages.invalid}}
   </div>
   {{/if}}
   <br>
@@ -39,8 +39,6 @@
     </div>
     <br>
     <br>
-
-
     <button class="button-primary Show" type="submit" name="button">SHOW</button>
   </form>
 

@@ -84,7 +84,7 @@ app.post("/insertReg", async function (req, res, next) {
 
   const reg = req.body.Input
   let message =  await regF.regNum(reg)
-  req.flash('info', message )
+  req.flash('invalid', message )
 
   res.redirect("/")
 

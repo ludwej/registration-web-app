@@ -2,15 +2,11 @@ module.exports = function (pool) {
 
 
   async function regNum(regN) {
-    // let registration= regN.
-    if (regN == undefined || regN == "") {
-      return false
-    }  
     let tag = regN.substr(0, 3).trim();
     let town = await pool.query('SELECT id FROM towns WHERE initial = $1', [tag])
     if (town.rowCount > 0) {
       let duplicate = await pool.query('SELECT id FROM registrationNumbers WHERE registrationNo=$1', [regN])
-      if (duplicate.rowCount > 0) {
+      if (duplicate.rowCount === 1) {
         return 'registration already exists';
       } 
       await pool.query('INSERT into registrationNumbers (registrationNo, town_id)  values($1, $2)', [regN, town.rows[0].id]);
