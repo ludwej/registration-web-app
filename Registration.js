@@ -20,17 +20,19 @@ module.exports = function (pool) {
   }
 
   async function filter(regN) {
-    let registration = regN.substr(0, 3).trim();
+    if (regN === 'ALL'){
+      let getTown = await pool.query('SELECT * FROM registrationNumbers');
+
+    return getTown.rows;
+    }
+
+   else {
+     let registration = regN.substr(0, 3).trim();
     let filterReg = await pool.query('SELECT id FROM towns WHERE initial = $1 ', [registration])
     // console.log(filterReg.rows[0].id);
     let filtering = await pool.query('select registrationNo from registrationNumbers where town_id = $1 ', [filterReg.rows[0].id])
-    console.log(filtering.rows);
     return filtering.rows
-    // let result = await pool.query('select id from towns where initial=$1', ['ca']);
-    // let id = result.rows[0].id
-    // const capeTown = await pool.query('select registrationNo from RegistrationNumbers where town_id =$1', [id]);
-    // return capeTown.rows;
-
+  }
   }
 
   // async function selectGeorge() {
