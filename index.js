@@ -69,7 +69,7 @@ app.get("/towns", async function (req, res, next) {
     let reg = req.body.Town;
 
     let register = await regF.filter(reg)
-    console.log(regi);
+    
     
 
     res.redirect("/towns", {
@@ -82,9 +82,9 @@ app.get("/towns", async function (req, res, next) {
 
 app.post("/insertReg", async function (req, res, next) {
 
-  const name = req.body.Input
-  await regF.regNum(name)
-
+  const reg = req.body.Input
+  let message =  await regF.regNum(reg)
+  req.flash('info', message )
 
   res.redirect("/")
 
