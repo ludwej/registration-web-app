@@ -2,7 +2,7 @@ let express = require('express')
 let app = express()
 let flash = require('express-flash')
 const session = require('express-session')
-let registrationFunction = require('./Registration')
+let registrationFunction= require('./Registration.js')
 
 
 
@@ -22,7 +22,10 @@ const pool = new Pool({
   ssl: useSSL
 })
 
-let regF = registrationFunction(pool)
+// let regF = registrationFunction(pool)
+let routes = require('./routes/routes.js')
+let routing = routes(pool)
+
 
 // app.use(flash())
 
@@ -51,62 +54,13 @@ app.use(flash())
 
 
 
-app.get("/", async function (req, res, next) {
-  try {
-    let register = await regF.Towns();
-    res.render("home", {
-      register
-    });
-  } catch (error) {
-    next(error)
-  }
-});
+app.get("/",routing.homeRoute);
 
-app.get("/towns", async function (req, res, next) {
-  try {
+app.get("/towns",routing.townsRoute );
 
+app.post("/insertReg",routing.insert);
 
-    let reg = req.body.Town;
-
-    let register = await regF.filter(reg)
-    
-    
-
-    res.redirect("/towns", {
-      register
-    });
-  } catch (error) {
-    next(error)
-  }
-});
-
-app.post("/insertReg", async function (req, res, next) {
-
-  const reg = req.body.Input
-  let message =  await regF.regNum(reg)
-  req.flash('invalid', message )
-  req.flash('success', message )
-
-  res.redirect("/")
-
-});
-
-app.post("/towns", async function (req, res, next) {
-  try {
-    let reg = req.body.Town
-
-    let register = await regF.filter(reg)
-
-      if(reg === 'all'){
-        await regF.Towns()
-      }
-    res.render("home", {
-      register
-    });
-  } catch (error) {
-    next(error)
-  }
-});
+app.post("/towns",routing.postTown);
 
 app.get('/reset', async function (req, res) {
   await pool.query('delete  from  registrationNumbers');
