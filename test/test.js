@@ -107,9 +107,7 @@ describe('Registrations', async function () {
   it('should Test SUCCCESS Flash message', async function () {
   
     let reg = Registration(pool)
-    let message = await reg.regNum  ('CA 123 123')
-    await reg.regNum  ('CAW 124 123')
-  
+    let message = await reg.regNum  ('CAW 124 123')
 
    assert.deepEqual(message, 'success'); 
   });
