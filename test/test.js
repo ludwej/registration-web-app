@@ -92,10 +92,10 @@ describe('Registrations', async function () {
   it('should Test invalid Flash message', async function () {
   
     let reg = Registration(pool)
-    let message = await reg.regNum('GAW 123 123')
-  //  await reg.regNum('ca 1254, ca 2468', 'ca')
+    await reg.regNum('GAW 123 123')
+    let wrongReg = await reg.regNum('GAW 123 123')
 
-   assert.deepEqual(message, [ { registrationno: 'not a valid town'} ]); 
+   assert.deepEqual(wrongReg, 'not a valid town'); 
   });
 
   beforeEach(async function () {
@@ -111,6 +111,6 @@ describe('Registrations', async function () {
     await reg.regNum  ('CAW 124 123')
   
 
-   assert.deepEqual(message, [ { registrationno: 'success'} ]); 
+   assert.deepEqual(message, 'success'); 
   });
 });
