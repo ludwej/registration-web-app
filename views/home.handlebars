@@ -5,7 +5,7 @@
 
   <form action="/insertReg" method="POST">
 
-    <input class="Input" type="text" name="Input" placeholder="Add registration number" pattern='[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,3}'>
+    <input class="Input" type="text" name="Input" placeholder="Add registration number" pattern='[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,3}'> 
      
 
 
@@ -19,7 +19,7 @@
     {{messages.invalid}}
   </div>
   {{/if}}
-  <br>
+  <br>  
   <br>
 
 
@@ -39,6 +39,7 @@
     </div>
     <br>
     <br>
+
     <button class="button-primary Show" type="submit" name="button">SHOW</button>
   </form>
 

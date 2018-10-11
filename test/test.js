@@ -26,12 +26,12 @@ describe('Registrations', async function () {
   it('should RETURN registration starts with CA for Cape Town', async function () {
   
     let reg = Registration(pool)
-   await reg.regNum('ca 1223, ca 12223', 'ca')
+   await reg.regNum('CA 1223, CA 12223', 'CA')
   //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-   returnCpt = await reg.filter('ca')
+   returnCpt = await reg.filter('CA')
 
-   assert.deepEqual(returnCpt,  [ { registrationno: "ca 1223, ca 12223" } ]); 
+   assert.deepEqual(returnCpt,  [ { registrationno: "CA 1223, CA 12223" } ]); 
   });
 
   beforeEach(async function () {
@@ -43,12 +43,12 @@ describe('Registrations', async function () {
   it('should RETURN registration starts with CJ for Paarl', async function () {
   
     let reg = Registration(pool)
-    await reg.regNum('cj 1223, cj 12223', 'cj')
+    await reg.regNum('CJ 1223, CJ 12223', 'CJ')
   //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-   returnPaarl = await reg.filter('cj')
+   returnPaarl = await reg.filter('CJ')
 
-   assert.deepEqual(returnPaarl,  [ { registrationno: "cj 1223, cj 12223" } ]); 
+   assert.deepEqual(returnPaarl,  [ { registrationno: "CJ 1223, CJ 12223" } ]); 
   });
   
   beforeEach(async function () {
@@ -58,132 +58,46 @@ describe('Registrations', async function () {
 
   
 
-  it('should RETURN registration starts with caw for George', async function () {
+  it('should RETURN registration starts with CAW for George', async function () {
   
     let reg = Registration(pool)
-   await reg.regNum('caw 246, caw 123','caw')
+   await reg.regNum('CAW 246, CAW 123','CAW')
   
 
-   returnGeorge = await reg.filter('caw')
+   returnGeorge = await reg.filter('CAW')
 
-   assert.deepEqual(returnGeorge,[{registrationno: "caw 246, caw 123"} ]); 
+   assert.deepEqual(returnGeorge,[{registrationno: "CAW 246, CAW 123"} ]); 
   });
   
 
   it('should RETURN registration for All Towns', async function () {
   
     let reg = Registration(pool)
-   await reg.regNum('caw 246, cl 5265, cj 25678, ca 123 ','caw' , 'ca' ,'cl' , 'cj')
+   await reg.regNum('CAW 246, CL 5265, CJ 25678, CA 123 ','CAW' , 'CA' ,'CL' , 'CJ')
   
 
    returnGeorge = await reg.Towns('all')
  
    [ { id: 133,
     town_id: 2,
-    registrationno: 'caw 246, cl 5265, cj 25678, ca 123 ' } ] 
+    registrationno: 'CAW 246, CL 5265, CJ 25678, CA 123 ' } ] 
   });
   
-
-  // it('should RETURN registration starts with CY for George', function () {
-  //   var factoryF = Registration({
-  //     "CK 3737": 0,
-  //     "CZ 3737": 0,
-  //     "CA 309897": 0,
-  //     " CA 3737": 0,
-  //     " 3737": 0,
-  //     "CY 309897": 0,
-  //     "CA 3737": 0,
-  //     "CY 3737": 0,
-  //     "CA 309897": 0
-  //   });
-  //   var filtered = factoryF.filter("CY")
-  //   //
-  //   assert.deepEqual(filtered, ['CY 309897', 'CY 3737'])
-  //   //
-  // });
-
-//   it('should RETURN registration starts with CL for Paarl', function () {
-//     var factoryF = Registration({
-//       "CK 3737": 0,
-//       "CL 3737": 0,
-//       "CA 309897": 0,
-//       " CA 3737": 0,
-//       " 3737": 0,
-//       "CL 309897": 0,
-//       "CA 3737": 0,
-//       "CL 3737": 0,
-//       "CA 309897": 0
-//     });
-//     var filtered = factoryF.filter("CL")
-//     //
-//     assert.deepEqual(filtered, ['CL 3737', 'CL 309897'])
-//     //
-//   });
+  beforeEach(async function () {
+    // clean the tables before each test run
+    await pool.query('delete from registrationNumbers;')
+  })
 
 
-// });
+  it('should Test invalid Flash message', async function () {
+  
+    let reg = Registration(pool)
+    await reg.regNum('GAW 123 123')
+  //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
+   assert.deepEqual(reg,  [ { registrationno: "CJ 1223, CJ 12223" } ]); 
+  });
 
-// describe('Registrations', function () {
-//   it('should RETURN registration starts with CA for Cape Town', function () {
-//     var factoryF = Registration({
-//       "CA 3737": 0,
-//       "CY 3737": 0,
-//       "CA 309897": 0
-//     });
-//     var filtered = factoryF.filter("CA")
-
-//     assert.deepEqual(filtered, ['CA 3737', 'CA 309897'])
-
-//   });
-
-//   it('should RETURN registration starts with CK for Stellenbosch ', function () {
-//     var factoryF = Registration({
-//       "CA 3737": 0,
-//       "CK 3737": 0,
-//       "CA 309897": 0
-//     });
-//     var filtered = factoryF.filter("CK")
-
-//     assert.deepEqual(filtered, ['CK 3737'])
-
-//   });
-
-//   it('should RETURN registration starts with CY for George', function () {
-//     var factoryF = Registration({
-//       "CK 3737": 0,
-//       "CZ 3737": 0,
-//       "CA 309897": 0,
-//       " CA 3737": 0,
-//       " 3737": 0,
-//       "CY 309897": 0,
-//       "CA 3737": 0,
-//       "CY 3737": 0,
-//       "CA 309897": 0
-//     });
-//     var filtered = factoryF.filter("CY")
-//     //
-//     assert.deepEqual(filtered, ['CY 309897', 'CY 3737'])
-//     //
-//   });
-
-//   it('should RETURN registration starts with CL for Paarl', function () {
-//     var factoryF = Registration({
-//       "CK 3737": 0,
-//       "CL 3737": 0,
-//       "CA 309897": 0,
-//       " CA 3737": 0,
-//       " 3737": 0,
-//       "CL 309897": 0,
-//       "CA 3737": 0,
-//       "CL 3737": 0,
-//       "CA 309897": 0
-//     });
-//     var filtered = factoryF.filter("CL")
-//     //
-//     assert.deepEqual(filtered, ['CL 3737', 'CL 309897'])
-//     //
-//   });
 
 
 });
