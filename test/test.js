@@ -92,12 +92,25 @@ describe('Registrations', async function () {
   it('should Test invalid Flash message', async function () {
   
     let reg = Registration(pool)
-    await reg.regNum('GAW 123 123')
+    let message = await reg.regNum('GAW 123 123')
   //  await reg.regNum('ca 1254, ca 2468', 'ca')
 
-   assert.deepEqual(reg,  [ { registrationno: "CJ 1223, CJ 12223" } ]); 
+   assert.deepEqual(message, [ { registrationno: 'not a valid town'} ]); 
   });
 
+  beforeEach(async function () {
+    // clean the tables before each test run
+    await pool.query('delete from registrationNumbers;')
+  })
 
 
+  it('should Test SUCCCESS Flash message', async function () {
+  
+    let reg = Registration(pool)
+    let message = await reg.regNum  ('CA 123 123')
+    await reg.regNum  ('CAW 124 123')
+  
+
+   assert.deepEqual(message, [ { registrationno: 'success'} ]); 
+  });
 });
