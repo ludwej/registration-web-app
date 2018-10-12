@@ -95,7 +95,7 @@ describe('Registrations', async function () {
     await reg.regNum('GAW 123 123')
     let wrongReg = await reg.regNum('GAW 123 123')
 
-   assert.deepEqual(wrongReg, 'not a valid town'); 
+   assert.deepEqual(wrongReg, 'PLEASE ENTER A REGISTRATION PLATE!'); 
   });
 
   beforeEach(async function () {
@@ -109,6 +109,6 @@ describe('Registrations', async function () {
     let reg = Registration(pool)
     let message = await reg.regNum  ('CAW 124 123')
 
-   assert.deepEqual(message, 'success'); 
+   assert.deepEqual(message, 'REGISTRATION SUCCESSFULLY ADDED'); 
   });
 });
