@@ -1,60 +1,42 @@
 <div class="container">
-
-  <h1>Registrations</h1>
-
-
-  <form action="/insertReg" method="POST">
-
-    <input class="Input" type="text" name="Input" placeholder="Add registration number" pattern='[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,3}'> 
-     
-
-
-    <button type="button " name="AddBTN" class="AddBTN ">Add</button> <form action="/reset">
-    <button class="button-primary Show" type="submit" name="button">Clear</button>
-  </form>
-  
-
-
-  </form>
-
-  {{#if messages.invalid}}
-  <div class="entry">
-    <h2>  {{messages.invalid}}  </h2>
+  <div class="row">
+      <h1>Registrations</h1>
+      <div class="eleven columns">
+      <form action="/insertReg" method="POST">
+        <input class="Input" type="text" name="Input" placeholder="Add registration number" pattern='[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,3}'> 
+        <button type="button " name="AddBTN" class="AddBTN ">Add</button>
+      </form>
+      </div>
+        <div class="one columns">
+      <form action="/reset">
+        <button class="button-primary Show" id="clear" type="submit" name="button">Clear</button>
+      </form>
+      </div>
   </div>
-  {{/if}}
-  <br>  
-  <br>
 
+{{#if messages.invalid}}
+<div class="entry">
+  <h2> {{messages.invalid}} </h2>
+</div>
+{{/if}}
 
+<form action="/towns" method="post">
+  <div class='select'>
+    <select name="Town">
+      <option name="all" value="ALL">ALL</option>
+      <option name="Town" value="CA">Cape Town</option>
+      <option name="Town" value="CJ">Paarl</option>
+      <option name="Town" value="CAW ">George</option>
+      <option name="Town" value="CL">Stellenbosch</option>
+    </select>
 
-
-
-  <form action="/towns" method="post">
-    <div class='select'>
-      <select name="Town">
-        <option name="all" value="ALL">ALL</option>
-        <option name="Town" value="CA">Cape Town</option>
-        <option name="Town" value="CJ">Paarl</option>
-        <option name="Town" value="CAW ">George</option>
-        <option name="Town" value="CL">Stellenbosch</option>
-      </select>
-
-    </div>  <button class="button-primary Show" type="submit" name="button">SHOW</button>
-  </form>
-      <br>
-  
-
-   
-
-  <br>
-  
-
-  
-
-  <br> {{#each register}}
-  <div class="Output">
-    <h5> {{registrationno}}</h5>
-  </div>
-  {{/each}}
-
+    <button class="button-primary Show" type="submit" name="button">SHOW</button>
+</form>
+<br>
+<br>
+{{#each register}}
+<div class="Output">
+  <h5> {{registrationno}}</h5>
+</div>
+{{/each}}
 </div>

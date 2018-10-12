@@ -7,12 +7,12 @@ module.exports = function (pool) {
     if (town.rowCount > 0) {
       let duplicate = await pool.query('SELECT id FROM registrationNumbers WHERE registrationNo=$1', [regN])
       if (duplicate.rowCount === 1) {
-        return 'registration already exists';
+        return 'REGISTRATION ALREADY EXISTS!';
       } 
       await pool.query('INSERT into registrationNumbers (registrationNo, town_id)  values($1, $2)', [regN, town.rows[0].id]);
-      return "success"
+      return "REGISTRATION SUCCESSFULLY ADDED!"
     }
-    return 'not a valid town';
+    return 'PLEASE ENTER A REGISTRATION PLATE!';
   }
 
 
