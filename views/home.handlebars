@@ -1,16 +1,19 @@
 <div class="container">
-  <div class="row">
+  
       <h1>Registrations</h1>
+      <div class="row">
       <div class="eleven columns">
       <form action="/insertReg" method="POST">
         <input class="Input" type="text" name="Input" placeholder="Add registration number e.g CA 123 123" title="PLEASE INPUT CORRECT FORMAT e.g CA 123 123" pattern='[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,3}'> 
         <button type="button " name="AddBTN" class="AddBTN ">Add</button>
+
+             {{!-- <form action="/reset"> --}}
+        <button class="button-primary Show" id="clear" type="submit" name="button"><a href='/reset'>Clear</button></a>
+      </form>
       </form>
       </div>
         <div class="one columns">
-      <form action="/reset">
-        <button class="button-primary Show" id="clear" type="submit" name="button">Clear</button>
-      </form>
+ 
       </div>
   </div>
 
