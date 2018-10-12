@@ -22,7 +22,7 @@ const pool = new Pool({
   ssl: useSSL
 })
 
-// let regF = registrationFunction(pool)
+
 let routes = require('./routes/routes.js')
 let routing = routes(pool)
 

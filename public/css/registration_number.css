@@ -1,7 +1,4 @@
-body {
-  padding-top: 10%;
-  background-repeat: no-repeat;
-}
+
 
 .Input {
   width: 50%;
@@ -12,10 +9,15 @@ body {
 h1 {
   text-align: center;
   background-color: rgb(207, 187, 9);
+  height: 100px;
   font-size: 72px;
   font-family:  "Times New Roman", Times, serif;
+  width: 100%
 }
 
+.select{
+  padding-left: 1%;
+}
 .Output {
   background: rgb(207, 187, 9);
   border: black 3px solid;
@@ -25,7 +27,14 @@ h1 {
   text-align: center;
   padding-top: 10px;
 }
+.container{
+  border: yellow 1px solid ;
+}
 
+
+.entry{
+  text-align: center bold 10px ;
+}
 /* .AddBTN{
   padding-left: 50%;
 } */

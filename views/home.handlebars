@@ -16,7 +16,7 @@
 
   {{#if messages.invalid}}
   <div class="entry">
-    {{messages.invalid}}
+    <h2>  {{messages.invalid}}  </h2>
   </div>
   {{/if}}
   <br>  
@@ -27,7 +27,7 @@
 
 
   <form action="/towns" method="post">
-    <div class='row'>
+    <div class='select'>
       <select name="Town">
         <option name="all" value="ALL">ALL</option>
         <option name="Town" value="CA">Cape Town</option>
@@ -37,8 +37,8 @@
       </select>
 
     </div>
-    <br>
-    <br>
+      <br>
+  
 
     <button class="button-primary Show" type="submit" name="button">SHOW</button>
   </form>
