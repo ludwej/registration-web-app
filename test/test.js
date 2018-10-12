@@ -109,6 +109,6 @@ describe('Registrations', async function () {
     let reg = Registration(pool)
     let message = await reg.regNum  ('CAW 124 123')
 
-   assert.deepEqual(message, 'REGISTRATION SUCCESSFULLY ADDED'); 
+   assert.deepEqual(message, 'REGISTRATION SUCCESSFULLY ADDED!'); 
   });
 });
