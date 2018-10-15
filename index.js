@@ -62,10 +62,8 @@ app.post("/insertReg",routing.insert);
 
 app.post("/towns",routing.postTown);
 
-app.get('/reset', async function (req, res) {
-  await pool.query('delete  from  registrationNumbers');
-  res.redirect('/');
-});
+app.get('/reset', routing.reset);
+
 
 
 

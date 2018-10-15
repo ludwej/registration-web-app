@@ -44,14 +44,14 @@
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
-    width: 85%;
+    width: 100%;
     padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    width: 100%; }
   .column,
   .columns {
     margin-left: 4%; }
@@ -401,9 +401,19 @@ on small devices, paste the mobile query code up in the buttons section and styl
 there.
 */
 
+@media (min-width: 412px) {
+  body{
+    width: 100%;
+  }
+}
+
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 360px) {
+  body{
+    width: 100%
+  }
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}

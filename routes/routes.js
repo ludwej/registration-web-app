@@ -60,12 +60,17 @@ async function insert (req, res, next) {
     }
   }
 
+  async function reset(req, res) {
+    await pool.query('delete  from  registrationNumbers');
+    res.redirect('/')}
+
 
 
 return{
     insert,
     homeRoute,
     townsRoute,
+    reset,
     postTown
 }
 
